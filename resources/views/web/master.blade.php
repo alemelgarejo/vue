@@ -8,12 +8,16 @@
     <title>Módulo admin</title>
 </head>
 <body>
+    @include('web.partials.nav-header')
 
-    <br>
-    <div class="container" id="app">
+    <div class="container mb-3 mt-3" id="app">
 
         @yield('content')
+
     </div>
+
+    @include('web.partials.footer')
+
     <script src="{{url('js/app.js')}}"></script>
 </body>
 </html>

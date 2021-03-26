@@ -1862,10 +1862,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  created: function created() {
+    print();
   }
 });
+
+function print() {
+  console.log('Component created - print.');
+}
 
 /***/ }),
 
@@ -1900,11 +1904,60 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('list-posts', {
+  props: ['title', 'final_posts'],
+  data: function data() {
+    return {
+      posts2: [{
+        title: 'Título 1',
+        image: '1615397794.png',
+        content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+      }, {
+        title: 'Título 2',
+        image: '1615397794.png',
+        content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+      }, {
+        title: 'Título 3',
+        image: '1615397794.png',
+        content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+      }, {
+        title: 'Título 4',
+        image: '1615397794.png',
+        content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+      }, {
+        title: 'Título 5',
+        image: '1615397794.png',
+        content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+      }]
+    };
+  },
+  template: '<div><h1>{{title}}</h1><div class="card" v-for="post in final_posts">  <div class="card-body"> <h5 class="card-title">{{post.title}}</h5> <p class="card-text">{{post.content}}</p> <a href="#" class="btn btn-primary">Ver resumen</a> </div> </div></div>'
+});
 var app = new Vue({
   el: '#app',
   data: {
     message: 'Hola Vue!',
-    posts: ['Título 1', 'Título 2', 'Título 3', 'Título 4', 'Título 5']
+    posts: [{
+      title: 'Título 100',
+      image: '1615397794.png',
+      content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+    }, {
+      title: 'Título 200',
+      image: '1615397794.png',
+      content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+    }, {
+      title: 'Título 300',
+      image: '1615397794.png',
+      content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+    }, {
+      title: 'Título 400',
+      image: '1615397794.png',
+      content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+    }, {
+      title: 'Título 500',
+      image: '1615397794.png',
+      content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+    }]
   }
 });
 
@@ -37437,7 +37490,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-md-8" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
+              _vm._v("Componente de ejemplo")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [

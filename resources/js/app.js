@@ -19,7 +19,10 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component(
+    'example-component',
+    require('./components/ExampleComponent.vue').default
+    );
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,10 +30,72 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('list-posts', {
+    props: ['title', 'final_posts'],
+    data: function () {
+        return {
+            posts2: [
+                {
+                    title:'Título 1',
+                    image:'1615397794.png',
+                    content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+                },
+                {
+                    title:'Título 2',
+                    image:'1615397794.png',
+                    content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+                },
+                {
+                    title:'Título 3',
+                    image:'1615397794.png',
+                    content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+                },
+                {
+                    title:'Título 4',
+                    image:'1615397794.png',
+                    content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+                },
+                {
+                    title:'Título 5',
+                    image:'1615397794.png',
+                    content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+                },
+            ]
+        }
+    },
+    template: '<div><h1>{{title}}</h1><div class="card" v-for="post in final_posts">  <div class="card-body"> <h5 class="card-title">{{post.title}}</h5> <p class="card-text">{{post.content}}</p> <a href="#" class="btn btn-primary">Ver resumen</a> </div> </div></div>'
+});
+
 const app = new Vue({
     el: '#app',
     data: {
         message: 'Hola Vue!',
-        posts: ['Título 1', 'Título 2', 'Título 3', 'Título 4', 'Título 5']
+        posts: [
+            {
+                title:'Título 100',
+                image:'1615397794.png',
+                content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+            },
+            {
+                title:'Título 200',
+                image:'1615397794.png',
+                content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+            },
+            {
+                title:'Título 300',
+                image:'1615397794.png',
+                content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+            },
+            {
+                title:'Título 400',
+                image:'1615397794.png',
+                content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+            },
+            {
+                title:'Título 500',
+                image:'1615397794.png',
+                content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
+            },
+        ]
     }
 });
