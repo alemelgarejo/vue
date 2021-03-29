@@ -20,7 +20,7 @@ class PostImageTableSeeder extends Seeder
 
         foreach($posts as $key => $p) {
                 PostImage::create([
-                    'image' => "1570399182.png",
+                    'image' => "1615397794.png",
                     'post_id' => $p->id,
                 ]);
         }

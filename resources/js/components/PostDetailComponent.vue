@@ -4,10 +4,12 @@
         <div v-if="post">
             <div class="card mt-3">
                 <div class="card-header">
-                    <img v-bind:src=" 'images/' +post.image" class="card-img-top"  alt="Card image cap">
+                    <img v-bind:src=" 'images/' + post.image.image" class="card-img-top"  alt="Card image cap">
                 </div>
                 <div class="card-body">
                     <h1 class="card-title">{{post.title}}</h1>
+                    <router-link class="btn btn-success" :to="{name: 'post-category', params: {category_id: post.category.id}}">{{post.category.title}}</router-link>
+                    <br><br>
                     <p class="card-text">{{post.content}}</p>
                     <button class="btn btn-primary" v-on:click="postClick(post)">Ver resumen</button>
                 </div>
@@ -22,23 +24,20 @@
 <script>
     export default {
         created(){
-
+            this.getPost();
             console.log('Hola mundo Vue '+this.$route.params.id);
         },
         methods: {
-            getPost: function() {
+            getPost() {
+                fetch('http://localhost/php/udemy1/public/api/post/'+this.$route.params.id)
+                .then( response => response.json() )
+                .then( json => (this.post = json.data) )
             }
         },
         data: function () {
             return {
                 postSelected:"",
-                post: [
-                    {
-                        title:'Título 1000',
-                        image:'1615397794.png',
-                        content: 'Some quick example text to build on the card title and make up the bulk of the cards content.'
-                    }
-                ]
+                post: []
             }
         },
     }

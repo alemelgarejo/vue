@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>{{category}}</h1>
         <post-list-default :posts="posts"></post-list-default>
     </div>
 
@@ -18,16 +19,13 @@
                 this.postSelected = "";
             },
             getPost() {
-                fetch('http://localhost/php/udemy1/public/api/post')
+                console.log('category: '+this.$route.params.category_id);
+                fetch('http://localhost/php/udemy1/public/api/post/'+this.$route.params.category_id+'/category')
                 .then( response => response.json() )
-                .then( json => (this.posts = json.data.data) /* console.log(json.data.data[0].title) */ )
-               /* fetch('http://localhost/php/udemy1/public/api/category')
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(json) {
-                    console.log(json.data.data[0].title);
-                })*/
+                .then( json =>{
+                    (this.posts = json.data.posts.data)
+                    (this.category = json.data.category.title)
+                    })
             }
         },
         data: function () {

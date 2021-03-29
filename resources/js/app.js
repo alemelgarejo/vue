@@ -34,6 +34,10 @@ Vue.component(
     'modal-post',
     require('./components/PostModalComponent.vue').default
     );
+Vue.component(
+    'post-list-default',
+    require('./components/PostListDefaultComponent.vue').default
+    );
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
