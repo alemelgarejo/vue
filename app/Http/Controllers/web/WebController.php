@@ -10,4 +10,7 @@ class WebController extends Controller
     public function index() {
         return view('web.index');
     }
+    public function detail() {
+        return view('web.index');
+    }
 }

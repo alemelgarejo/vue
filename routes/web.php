@@ -22,6 +22,7 @@ Route::resource('dashboard/post', PostController::class);
 Route::resource('dashboard/user', UserController::class);
 Route::resource('dashboard/category', CategoryController::class);
 Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
+Route::get('/detail/{id}', [WebController::class, 'detail']);
 
 /* Route::get('/', function () {
     return view('welcome');
