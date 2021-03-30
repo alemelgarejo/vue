@@ -1,7 +1,14 @@
 <template>
     <div>
         <h1>{{category}}</h1>
-        <post-list-default :posts="posts"></post-list-default>
+        <post-list-default
+            :posts="posts"
+            :key="currentPage"
+            @getCurrentPage="getCurrentPage"
+            v-if="total > 0"
+            :currentPage="currentPage"
+            :total="total"
+         ></post-list-default>
     </div>
 
 </template>
@@ -20,18 +27,27 @@
             },
             getPost() {
                 console.log('category: '+this.$route.params.category_id);
-                fetch('http://localhost/php/udemy1/public/api/post/'+this.$route.params.category_id+'/category')
+                fetch('http://localhost/php/udemy1/public/api/post/'+this.$route.params.category_id+'/category?page='+this.currentPage)
                 .then( response => response.json() )
                 .then( json =>{
-                    (this.posts = json.data.posts.data)
-                    (this.category = json.data.category.title)
+                    this.posts = json.data.posts.data;
+                    this.total = json.data.posts.last_page;
+                    this.category = json.data.category.title;
                     })
+            },
+            getCurrentPage(val) {
+                console.log('PostList + currentPage: '+val);
+                this.currentPage = val;
+                this.getPost();
             }
         },
         data: function () {
             return {
                 postSelected:"",
-                posts: []
+                posts: [],
+                total: 0,
+                category: "",
+                currentPage: 1,
             }
         },
     }

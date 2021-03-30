@@ -24,6 +24,7 @@ Route::resource('dashboard/category', CategoryController::class);
 Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->name('post.image');
 Route::get('/detail/{id}', [WebController::class, 'detail']);
 Route::get('/post-category/{id}', [WebController::class, 'post_category']);
+Route::get('/contact', [WebController::class, 'contact']);
 
 /* Route::get('/', function () {
     return view('welcome');

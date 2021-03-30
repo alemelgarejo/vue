@@ -40,7 +40,8 @@
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © {{date('Y')}} Copyright:
-      <a class="text-white" href="/">Larablog</a>
+      <router-link class="text-white" to="/"><u>Larablog</u></router-link>
+      <router-link class="text-white" to="/contact"><u>Contacto</u></router-link>
     </div>
     <!-- Copyright -->
   </footer>

@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="navbar-brand" href="/">Home</a>
+            <router-link class="navbar-brand" to="/"><u>Home</u></router-link>
         </li>
       </ul>
       <ul class="navbar-nav">{{--
