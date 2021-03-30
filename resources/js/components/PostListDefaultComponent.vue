@@ -10,19 +10,26 @@
             </div>
         </div>
         <modal-post  @closeModalPost="closeModalPost" :post="postSelected"></modal-post>
+        <v-pagination class="mt-3"
+                v-model="currentPage"
+                :page-count="total"
+                :classes="bootstrapPaginationClasses"
+                :labels="paginationAnchorTexts">
+
+        </v-pagination>
         <router-link to="/">Go to List</router-link>
     </div>
 
 </template>
 <script>
 import PostListComponent from './PostListComponent.vue';
+import vPagination from 'vue-plain-pagination';
     export default {
-  components: { PostListComponent },
-        props: ['posts'],
-        created(){
-            this.getPost();
-        },
+        components: { PostListComponent },
+        props: ['posts', 'total', 'currentPage'],
         methods: {
+            created() {
+            },
             postClick: function(p) {
                 this.postSelected = p;
                 console.log('click'+p.title);
@@ -31,10 +38,32 @@ import PostListComponent from './PostListComponent.vue';
                 this.postSelected = "";
             },
 
+
         },
         data: function () {
             return {
-                postSelected:""
+                postSelected:"",
+                //currentPage: 1,
+                bootstrapPaginationClasses: {
+                    ul: 'pagination',
+                    li: 'page-item',
+                    liActive: 'active',
+                    liDisable: 'disabled',
+                    button: 'page-link'
+                },
+                paginationAnchorTexts: {
+                    first: '',
+                    prev: '&laquo;',
+                    next: '&raquo;',
+                    last: ''
+                }
+            }
+        },
+        components: { vPagination },
+        watch: {
+            currentPage: function (newVal, oldVal) {
+                console.log(newVal);
+                this.$emit('getCurrentPage', newVal);
             }
         },
     }
