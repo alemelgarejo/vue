@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 import router from './assets/router.js';
-
+import VueMask from 'v-mask';
 
 /**
  * The following block of code may be used to automatically register your
@@ -81,7 +81,13 @@ Vue.component(
     template: '<div><h1>{{title}}</h1><div class="card" v-for="post in final_posts">  <div class="card-body"> <h5 class="card-title">{{post.title}}</h5> <p class="card-text">{{post.content}}</p> <a href="#" class="btn btn-primary">Ver resumen</a> </div> </div></div>'
 }); */
 
+import App from "./components/App.vue";
+import Vue from 'vue';
+
+Vue.use(VueMask);
+
 const app = new Vue({
-    el: '#app',
+    el: '#app',/*
+    render: h => h(App), */
     router
 });

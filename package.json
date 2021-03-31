@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^26.0.0",
+        "v-mask": "^2.2.4",
         "vue-plain-pagination": "^0.3.0"
     }
 }

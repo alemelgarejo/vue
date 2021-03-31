@@ -25,6 +25,7 @@ Route::post('dashboard/post/{post}/image', [PostController::class, 'image'])->na
 Route::get('/detail/{id}', [WebController::class, 'detail']);
 Route::get('/post-category/{id}', [WebController::class, 'post_category']);
 Route::get('/contact', [WebController::class, 'contact']);
+Route::get('/categories', [WebController::class, 'categories']);
 
 /* Route::get('/', function () {
     return view('welcome');

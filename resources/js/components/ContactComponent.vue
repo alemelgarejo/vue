@@ -1,76 +1,56 @@
 <template>
     <div class="col-8 offset-2">
-        <div class="card">
+        <form @submit.prevent="onSubmit">
             <div class="card-header">
                 <img src="images/csgo.png" alt="csgo" width="100%" style="width:200px !important;" class="mx-auto d-block">
             </div>
-            <div class="card_body mx-3 my-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            Nombre
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Nombre" v-model="name">
-                </div>
+            <BaseInput label="Nombre" v-model="form.name"></BaseInput>
+            <BaseInput label="Apellido" v-model="form.surname"></BaseInput>
+            <BaseInput label="Email" type="email" v-model="form.email"></BaseInput>
+            <BaseInput label="Teléfono"  v-model="form.phone"></BaseInput>
 
-                <div class="input-group mt-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            Apellido
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Apellido" v-model="surname">
-                </div>
-
-                <div class="input-group mt-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            Email
-                        </span>
-                    </div>
-                    <input type="email" class="form-control" placeholder="Email" v-model="email">
-                </div>
-
-                <div class="input-group mt-3">
-                    <textarea class="form-control" placeholder="Comentarios" v-model="content"></textarea>
-                </div>
-
-                <button @click="saveContact" class="btn btn-primary float-right mt-3 btn-sm">Enviar</button>
+            <div class="form-group">
+                <label>Contenido</label>
+                <textarea type="text" class="form-control" rows="3" v-model="form.content"></textarea>
             </div>
-        </div>
-        {{name}}
-        {{surname}}
-        {{email}}
-        {{content}}
-    </div>
 
+            <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+        </form>
+    </div>
 </template>
 <script>
+import  BaseInput  from '../components/BaseInput.vue';
     export default {
-        created(){
-            //this.saveContact();
-        },
-        methods: {
-            saveContact: function() {
-                console.log("Nombre: "+this.name+", Apellidos: "+this.surname+", Email: "+this.email+",  Contenido: "+this.content);
-                /* fetch('http://localhost/php/udemy1/public/api/post?page='+this.currentPage)
-                .then( response => response.json() )
-                .then( json =>{
-                    this.posts = json.data.data;
-                    this.total = json.data.last_page;
-                    console.log('created '+this.total);
-                }); */
-            },
-        },
-        data: function () {
+        components:{BaseInput},
+        data() {
             return {
-                name: '',
-                surname: '',
-                email: '',
-                content: '',
+                form: {
+                    name: '',
+                    surname: '',
+                    email: '',
+                    phone: '',
+                    content: ''
+                }
             }
         },
+        methods: {
+            onSubmit() {
+                if(this.formValid) {
+                    console.log('Form sent - ' +this.formValid);
+                } else {
+                    console.log('Form not sent - ' +this.formValid);
+                }
+
+            }
+        },
+        computed: {
+            formValid() {
+                return this.form.name.length > 0 &&
+                    this.form.surname.length > 0 &&
+                    this.form.phone.length > 0 &&
+                    this.form.email.length > 0 &&
+                    this.form.content.length > 0
+            },
+        }
     }
 </script>
-<!--@closeModalPost="closeModalPost"-->

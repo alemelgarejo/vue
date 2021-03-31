@@ -20,4 +20,7 @@ class WebController extends Controller
     public function contact() {
         return view('web.index');
     }
+    public function categories() {
+        return view('web.index');
+    }
 }
